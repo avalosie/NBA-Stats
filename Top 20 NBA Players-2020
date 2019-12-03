@@ -1,0 +1,13 @@
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import pandas as pd
+
+year=2019
+url= "https://www.basketball-reference.com/leagues/NBA_2020_per_game.html".format(year)
+html=urlopen(url)
+soup=beautifulsoup(html)
+
+soup.findAll('tr', limit=2) #using FindAll method to get the column headers
+headers = [th.getText() for th in soup.findAll('tr', limit=2)[0].findAll('th')] #extracting the text we need into a list
+headers = headers[1:] #we don't need the first row
+headers 
